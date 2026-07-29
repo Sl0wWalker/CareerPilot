@@ -1,10 +1,14 @@
 from datetime import UTC, date, datetime
+from typing import TYPE_CHECKING
 from uuid import UUID, uuid4
 
 from sqlalchemy import Boolean, Date, DateTime, ForeignKey, Integer, String, Text, Uuid
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from careerpilot.db.base import Base
+
+if TYPE_CHECKING:
+    from careerpilot.models.resume import ResumeImport
 
 
 def utc_now() -> datetime:
@@ -52,6 +56,9 @@ class CareerProfile(EntityMixin, Base):
     )
     job_preference: Mapped["JobPreference | None"] = relationship(
         back_populates="profile", cascade="all, delete-orphan", uselist=False
+    )
+    resume_imports: Mapped[list["ResumeImport"]] = relationship(
+        back_populates="profile", cascade="all, delete-orphan"
     )
 
 

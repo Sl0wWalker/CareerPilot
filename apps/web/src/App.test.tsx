@@ -7,16 +7,19 @@ afterEach(() => {
 });
 
 describe("App", () => {
-  it("shows the local foundation", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(
-      new Response(JSON.stringify({ status: "ok" }), { status: 200 }),
-    );
+  it("shows the resume ingestion workspace", async () => {
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ status: "ok" }), { status: 200 }),
+      )
+      .mockResolvedValueOnce(new Response(JSON.stringify([]), { status: 200 }));
 
     render(<App />);
 
     expect(
-      screen.getByRole("heading", { name: /job application workspace/i }),
+      screen.getByRole("heading", { name: /trusted career data/i }),
     ).toBeInTheDocument();
+    expect(screen.getByLabelText(/choose resume/i)).toBeInTheDocument();
     expect(await screen.findByText("Local service online")).toBeInTheDocument();
   });
 });

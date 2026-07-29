@@ -8,6 +8,7 @@ from careerpilot.models.profile import (
     Project,
     Skill,
 )
+from careerpilot.models.resume import ParsedFact, ResumeImport
 
 __all__ = [
     "Achievement",
@@ -17,5 +18,7 @@ __all__ = [
     "Experience",
     "JobPreference",
     "Project",
+    "ParsedFact",
+    "ResumeImport",
     "Skill",
 ]

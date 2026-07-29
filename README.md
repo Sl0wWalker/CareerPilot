@@ -2,10 +2,10 @@
 
 CareerPilot is a free, local-first job application assistant. The current foundation
 provides a FastAPI service, a React dashboard, SQLite, database migrations,
-configuration, structured logs, health checks, developer scripts, and a structured
-single-user career profile.
+configuration, structured logs, health checks, developer scripts, a structured
+single-user career profile, and deterministic resume ingestion.
 
-AI, job discovery, resume processing, matching, and browser automation remain
+AI, job discovery, matching, resume tailoring, and browser automation remain
 intentionally outside the current milestone.
 
 ## Prerequisites
@@ -64,6 +64,25 @@ Migrations create the career profile and related career-knowledge tables.
 CareerPilot supports one local profile in this milestone. Persistence is separated
 into repository, service, and API layers; details are recorded in
 `docs/milestones/M1.md`.
+
+## Resume ingestion
+
+Create a career profile before importing a resume. The dashboard supports PDF,
+DOCX, and UTF-8 TXT files up to 10 MB.
+
+Resume endpoints:
+
+- `POST /resume/import?filename=<name>` accepts the file bytes with its actual
+  `Content-Type`.
+- `GET /resume/imports` lists import history.
+- `GET /resume/import/{id}` retrieves an import.
+- `DELETE /resume/import/{id}` removes an import and its temporary facts.
+- `GET /resume/import/{id}/review` retrieves the review queue.
+- `PATCH /resume/import/{id}/fact/{factId}` edits or decides a fact.
+- `POST /resume/import/{id}/approve` promotes accepted facts to the career profile.
+
+The parser is deterministic and local. See `docs/milestones/M2.md` for its pipeline,
+validation rules, and extension points.
 
 ## Repository layout
 
