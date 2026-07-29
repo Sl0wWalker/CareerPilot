@@ -1,4 +1,10 @@
 from careerpilot.models.ai import AISettings, AISuggestion, ProfileEmbedding
+from careerpilot.models.automation import (
+    AdapterSetting,
+    AutomationRun,
+    AutomationStep,
+    BrowserSession,
+)
 from careerpilot.models.documents import (
     DocumentChange,
     DocumentVersion,
@@ -28,8 +34,12 @@ from careerpilot.models.resume import ParsedFact, ResumeImport
 
 __all__ = [
     "Achievement",
+    "AdapterSetting",
     "AISuggestion",
     "AISettings",
+    "AutomationRun",
+    "AutomationStep",
+    "BrowserSession",
     "CareerProfile",
     "DocumentChange",
     "DocumentVersion",

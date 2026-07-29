@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from careerpilot.api.ai import router as ai_router
+from careerpilot.api.automation import router as automation_router
 from careerpilot.api.documents import router as documents_router
 from careerpilot.api.health import router as health_router
 from careerpilot.api.jobs import router as jobs_router
@@ -39,6 +40,7 @@ app.include_router(health_router)
 app.include_router(jobs_router)
 app.include_router(matching_router)
 app.include_router(ai_router)
+app.include_router(automation_router)
 app.include_router(documents_router)
 app.include_router(profile_router)
 app.include_router(resume_router)

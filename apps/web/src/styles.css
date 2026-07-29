@@ -35,8 +35,74 @@ button {
 
 .view-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   padding-top: 18px;
+}
+
+.automation-workspace {
+  display: grid;
+  gap: 18px;
+}
+
+.automation-workspace h1 {
+  max-width: 850px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.automation-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+}
+
+.adapter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid #26342e;
+}
+
+.adapter-row p {
+  margin: 4px 0 0;
+  color: #91a39a;
+  font-size: 0.78rem;
+}
+
+.adapter-row button {
+  padding: 7px 10px;
+  border: 1px solid #31433b;
+  border-radius: 9px;
+  color: #43e39f;
+  background: transparent;
+}
+
+.mapped-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mapped-fields > div {
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+  border: 1px solid #2e4038;
+  border-radius: 12px;
+}
+
+.mapped-fields span,
+.mapped-fields small {
+  color: #91a39a;
+}
+
+.mapped-fields .needs-review {
+  border-color: rgba(242, 193, 78, 0.55);
+}
+
+.warning-text {
+  color: #f6d57d;
 }
 
 .view-tabs button,
@@ -463,6 +529,8 @@ input[type="file"] {
   }
 
   .workspace,
+  .automation-grid,
+  .mapped-fields,
   .facts,
   .ai-grid,
   .summary-grid,

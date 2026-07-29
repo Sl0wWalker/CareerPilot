@@ -87,7 +87,11 @@ def upgrade() -> None:
     )
     op.create_index("ix_screening_answers_job_id", "screening_answers", ["job_id"])
     op.create_index("ix_screening_answers_profile_id", "screening_answers", ["profile_id"])
-    op.create_index("ix_screening_answers_normalized_question", "screening_answers", ["normalized_question"])
+    op.create_index(
+        "ix_screening_answers_normalized_question",
+        "screening_answers",
+        ["normalized_question"],
+    )
 
 
 def downgrade() -> None:
