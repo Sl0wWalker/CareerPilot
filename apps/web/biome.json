@@ -10,7 +10,7 @@
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineEnding": "crlf"
+    "lineEnding": "lf"
   },
   "linter": {
     "enabled": true,
