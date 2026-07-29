@@ -5,6 +5,15 @@ from careerpilot.models.automation import (
     AutomationStep,
     BrowserSession,
 )
+from careerpilot.models.beta import (
+    BetaPreference,
+    Experiment,
+    ExperimentAssignment,
+    FeatureFlag,
+    FeedbackItem,
+    SatisfactionResponse,
+    UsageEvent,
+)
 from careerpilot.models.documents import (
     DocumentChange,
     DocumentVersion,
@@ -78,4 +87,14 @@ __all__ = [
 ]
 from careerpilot.models.release import AuditEvent, User
 
-__all__ = ["AuditEvent", "User"]
+__all__ += [
+    "AuditEvent",
+    "BetaPreference",
+    "Experiment",
+    "ExperimentAssignment",
+    "FeatureFlag",
+    "FeedbackItem",
+    "SatisfactionResponse",
+    "UsageEvent",
+    "User",
+]

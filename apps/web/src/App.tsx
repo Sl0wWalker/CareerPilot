@@ -7,6 +7,7 @@ import {
 } from "react";
 import { AIWorkspace } from "./AIWorkspace";
 import { AutomationWorkspace } from "./AutomationWorkspace";
+import { BetaWorkspace } from "./BetaWorkspace";
 import { DocumentWorkspace } from "./DocumentWorkspace";
 import { t } from "./i18n";
 import { JobWorkspace } from "./JobWorkspace";
@@ -41,7 +42,14 @@ const API_BASE_URL =
 
 export function App() {
   const [view, setView] = useState<
-    "resume" | "ai" | "jobs" | "documents" | "automation" | "tracking" | "start"
+    | "resume"
+    | "ai"
+    | "jobs"
+    | "documents"
+    | "automation"
+    | "tracking"
+    | "beta"
+    | "start"
   >("start");
   const [showOnboarding, setShowOnboarding] = useState(
     () => localStorage.getItem("careerpilot.onboarding.complete") !== "true",
@@ -160,6 +168,13 @@ export function App() {
       <nav className="view-tabs" aria-label={t("workspace")}>
         <button
           type="button"
+          className={view === "beta" ? "active" : ""}
+          onClick={() => setView("beta")}
+        >
+          Beta & feedback
+        </button>
+        <button
+          type="button"
           className={view === "start" ? "active" : ""}
           onClick={() => setView("start")}
         >
@@ -221,6 +236,8 @@ export function App() {
         <ReleaseWorkspace onRestartOnboarding={() => setShowOnboarding(true)} />
       ) : view === "tracking" ? (
         <TrackingWorkspace />
+      ) : view === "beta" ? (
+        <BetaWorkspace />
       ) : view === "automation" ? (
         <AutomationWorkspace />
       ) : view === "documents" ? (

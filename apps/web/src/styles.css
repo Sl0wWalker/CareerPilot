@@ -647,6 +647,76 @@ input[type="file"] {
   gap: 18px;
   padding-top: 64px;
 }
+
+.beta-workspace {
+  display: grid;
+  gap: 18px;
+  padding-top: 18px;
+}
+
+.beta-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 18px;
+}
+
+.beta-toggle,
+.beta-field {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-top: 1px solid #26342e;
+  color: #cbd8d1;
+}
+
+.beta-form {
+  display: grid;
+  gap: 12px;
+}
+
+.beta-form input,
+.beta-form textarea,
+.beta-form select,
+.beta-field select {
+  padding: 11px 13px;
+  border: 1px solid #31433b;
+  border-radius: 11px;
+  color: #edf4ef;
+  background: #07100d;
+}
+
+.beta-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.feedback-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  border-top: 1px solid #26342e;
+}
+
+.feedback-row span {
+  display: block;
+  margin-top: 5px;
+  color: #91a39a;
+  font-size: 0.78rem;
+}
+
+.feedback-row em {
+  color: #43e39f;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+@media (max-width: 800px) {
+  .beta-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .tracking-head {
   display: flex;
   justify-content: space-between;
