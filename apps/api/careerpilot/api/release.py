@@ -43,10 +43,18 @@ class TokenResponse(BaseModel):
 
 @router.post("/auth/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
 def register(payload: RegisterRequest, db: Database, settings: AppSettings):
+    if db.scalar(select(User.id).limit(1)) is not None:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Registration is closed after the owner account is created",
+        )
     if db.scalar(select(User).where(User.email == payload.email)):
         raise HTTPException(status_code=409, detail="User already exists")
-    role = "owner" if db.scalar(select(User.id).limit(1)) is None else "member"
-    user = User(email=str(payload.email), password_hash=hash_password(payload.password), role=role)
+    user = User(
+        email=str(payload.email),
+        password_hash=hash_password(payload.password),
+        role="owner",
+    )
     db.add(user)
     db.commit()
     db.refresh(user)

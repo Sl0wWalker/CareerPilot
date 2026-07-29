@@ -80,6 +80,7 @@ See `docs/milestones/M9.md` for the security model and release checklist.
 - `docs/DEVELOPMENT.md`
 - `docs/DEPLOYMENT.md`
 - `docs/RELEASE_CHECKLIST.md`
+- `docs/VALIDATION_REPORT.md`
 - `CHANGELOG.md`
 
 ## Career profile API

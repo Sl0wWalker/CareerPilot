@@ -23,6 +23,11 @@ def test_register_login_and_diagnostics(client):
     )
     assert register.status_code == 201
     assert register.json()["access_token"]
+    second_registration = client.post(
+        "/api/v1/auth/register",
+        json={"email": "member@example.com", "password": "a-long-test-password"},
+    )
+    assert second_registration.status_code == 403
     login = client.post(
         "/api/v1/auth/login",
         json={"email": "owner@example.com", "password": "a-long-test-password"},
