@@ -94,6 +94,15 @@ __all__ = [
     "FollowUp",
     "InterviewPlaceholder",
 ]
+from careerpilot.models.coach import (
+    CareerGoal,
+    CareerRoadmap,
+    InterviewQuestion,
+    LearningPlan,
+    MockInterviewResponse,
+    MockInterviewSession,
+    OfferComparison,
+)
 from careerpilot.models.release import AuditEvent, User
 
 __all__ += [
@@ -113,4 +122,11 @@ __all__ += [
     "WebhookEndpoint",
     "Workspace",
     "WorkspaceMember",
+    "CareerGoal",
+    "CareerRoadmap",
+    "InterviewQuestion",
+    "LearningPlan",
+    "MockInterviewResponse",
+    "MockInterviewSession",
+    "OfferComparison",
 ]

@@ -1212,3 +1212,43 @@ input[type="file"] {
   border-radius: 0.5rem;
   font: inherit;
 }
+.coach-workspace {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.coach-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.coach-metrics .panel {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.coach-metrics strong {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.coach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.coach-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .coach-metrics,
+  .coach-grid {
+    grid-template-columns: 1fr;
+  }
+}
