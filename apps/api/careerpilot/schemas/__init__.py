@@ -8,6 +8,15 @@ from careerpilot.schemas.ai import (
     SuggestionUpdate,
     SummaryRead,
 )
+from careerpilot.schemas.documents import (
+    ComparisonRead,
+    CoverLetterRequest,
+    DocumentRead,
+    DocumentUpdate,
+    ScreeningAnswerRead,
+    ScreeningRequest,
+    TailorRequest,
+)
 from careerpilot.schemas.profile import CareerProfileCreate, CareerProfileRead, CareerProfileUpdate
 from careerpilot.schemas.resume import (
     ApproveFactsRequest,
@@ -26,12 +35,19 @@ __all__ = [
     "CareerProfileCreate",
     "CareerProfileRead",
     "CareerProfileUpdate",
+    "ComparisonRead",
+    "CoverLetterRequest",
+    "DocumentRead",
+    "DocumentUpdate",
     "ParsedFactRead",
     "ParsedFactUpdate",
     "ResumeImportDetail",
     "ResumeImportRead",
     "SearchRequest",
     "SearchResult",
+    "ScreeningAnswerRead",
+    "ScreeningRequest",
     "SuggestionUpdate",
     "SummaryRead",
+    "TailorRequest",
 ]

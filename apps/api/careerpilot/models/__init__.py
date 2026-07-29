@@ -1,4 +1,10 @@
 from careerpilot.models.ai import AISettings, AISuggestion, ProfileEmbedding
+from careerpilot.models.documents import (
+    DocumentChange,
+    DocumentVersion,
+    ResumeTemplate,
+    ScreeningAnswer,
+)
 from careerpilot.models.jobs import (
     Company,
     Job,
@@ -25,6 +31,8 @@ __all__ = [
     "AISuggestion",
     "AISettings",
     "CareerProfile",
+    "DocumentChange",
+    "DocumentVersion",
     "Company",
     "Certification",
     "Education",
@@ -38,7 +46,9 @@ __all__ = [
     "ProfileEmbedding",
     "ParsedFact",
     "ResumeImport",
+    "ResumeTemplate",
     "SavedSearch",
     "ScheduledSearch",
+    "ScreeningAnswer",
     "Skill",
 ]
