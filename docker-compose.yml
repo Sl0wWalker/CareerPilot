@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      CAREERPILOT_ENVIRONMENT: production
+      CAREERPILOT_AUTH_ENABLED: "true"
+      CAREERPILOT_SECRET_KEY: ${CAREERPILOT_SECRET_KEY:?set CAREERPILOT_SECRET_KEY}
+      CAREERPILOT_DATABASE_URL: sqlite:////data/careerpilot.db
+      CAREERPILOT_BACKUP_DIRECTORY: /data/backups
+      CAREERPILOT_CORS_ORIGINS: '["http://localhost:8080"]'
+      CAREERPILOT_TRUSTED_HOSTS: '["localhost","127.0.0.1","api"]'
+    volumes:
+      - careerpilot_data:/data
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "8080:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  careerpilot_data:

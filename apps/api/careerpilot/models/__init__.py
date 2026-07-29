@@ -76,3 +76,6 @@ __all__ = [
     "FollowUp",
     "InterviewPlaceholder",
 ]
+from careerpilot.models.release import AuditEvent, User
+
+__all__ = ["AuditEvent", "User"]

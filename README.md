@@ -1,13 +1,9 @@
 # CareerPilot
 
-CareerPilot is a free, local-first job application assistant. The current foundation
-provides a FastAPI service, a React dashboard, SQLite, database migrations,
-configuration, structured logs, health checks, developer scripts, a structured
-single-user career profile, deterministic resume ingestion, optional AI profile
-intelligence, reviewable suggestions, and local semantic search.
-
-Job discovery, matching, resume tailoring, and browser automation remain intentionally
-outside the current milestone.
+CareerPilot is a free, local-first job application assistant. Version 1 includes a
+career knowledge base, resume ingestion, optional local AI intelligence, job discovery,
+explainable matching, document generation, supervised browser automation, application
+tracking, and release-hardening foundations.
 
 ## Prerequisites
 
@@ -37,6 +33,8 @@ Open:
 - API health: http://127.0.0.1:8000/health
 - API readiness: http://127.0.0.1:8000/ready
 - API documentation: http://127.0.0.1:8000/docs
+- Diagnostics: http://127.0.0.1:8000/diagnostics
+- Metrics: http://127.0.0.1:8000/metrics
 
 ## Run checks
 
@@ -54,6 +52,24 @@ From the repository root:
 ```
 
 Migrations create the career profile and related career-knowledge tables.
+
+## Production release
+
+Production requires authentication and a secret with at least 32 characters. Copy
+`.env.example`, set environment-specific values, then use:
+
+```powershell
+docker compose up --build -d
+```
+
+The web UI is served on port 8080 and the API on port 8000. Backup and restore:
+
+```powershell
+.\scripts\backup.ps1
+.\scripts\restore.ps1 -BackupPath .\data\backups\<backup-file>.db
+```
+
+See `docs/milestones/M9.md` for the security model and release checklist.
 
 ## Career profile API
 

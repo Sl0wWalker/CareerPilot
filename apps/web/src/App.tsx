@@ -8,6 +8,7 @@ import {
 import { AIWorkspace } from "./AIWorkspace";
 import { AutomationWorkspace } from "./AutomationWorkspace";
 import { DocumentWorkspace } from "./DocumentWorkspace";
+import { t } from "./i18n";
 import { JobWorkspace } from "./JobWorkspace";
 import { TrackingWorkspace } from "./TrackingWorkspace";
 
@@ -145,14 +146,14 @@ export function App() {
       <header className="topbar">
         <div className="brand">
           <span className="brand-mark">CP</span>
-          <span>CareerPilot</span>
+          <span>{t("appName")}</span>
         </div>
         <div className={`status status-${apiState}`} aria-live="polite">
           <span className="status-dot" />
-          Local service {apiState}
+          {t("localService")} {apiState}
         </div>
       </header>
-      <nav className="view-tabs" aria-label="Workspace">
+      <nav className="view-tabs" aria-label={t("workspace")}>
         <button
           type="button"
           className={view === "tracking" ? "active" : ""}

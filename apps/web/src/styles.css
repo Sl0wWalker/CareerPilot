@@ -33,6 +33,24 @@ button {
   cursor: pointer;
 }
 
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 26px;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+h2 {
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+
 .view-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -275,24 +293,6 @@ button {
   font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.16em;
-}
-
-h1,
-h2,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  margin-bottom: 26px;
-  font-size: clamp(3rem, 7vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: -0.06em;
-}
-
-h2 {
-  margin-bottom: 8px;
-  letter-spacing: -0.03em;
 }
 
 .lede,

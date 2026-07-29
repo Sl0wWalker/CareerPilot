@@ -1,0 +1,12 @@
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY apps/api /app
+RUN pip install --no-cache-dir .
+COPY infrastructure/api-entrypoint.sh /usr/local/bin/careerpilot-entrypoint
+RUN chmod +x /usr/local/bin/careerpilot-entrypoint
+RUN useradd --create-home careerpilot && chown -R careerpilot:careerpilot /app
+USER careerpilot
+EXPOSE 8000
+HEALTHCHECK CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"
+CMD ["careerpilot-entrypoint"]
