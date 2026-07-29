@@ -10,6 +10,7 @@ import { AutomationWorkspace } from "./AutomationWorkspace";
 import { DocumentWorkspace } from "./DocumentWorkspace";
 import { t } from "./i18n";
 import { JobWorkspace } from "./JobWorkspace";
+import { ReleaseWorkspace } from "./ReleaseWorkspace";
 import { TrackingWorkspace } from "./TrackingWorkspace";
 
 type ApiState = "checking" | "online" | "offline";
@@ -40,8 +41,11 @@ const API_BASE_URL =
 
 export function App() {
   const [view, setView] = useState<
-    "resume" | "ai" | "jobs" | "documents" | "automation" | "tracking"
-  >("resume");
+    "resume" | "ai" | "jobs" | "documents" | "automation" | "tracking" | "start"
+  >("start");
+  const [showOnboarding, setShowOnboarding] = useState(
+    () => localStorage.getItem("careerpilot.onboarding.complete") !== "true",
+  );
   const [apiState, setApiState] = useState<ApiState>("checking");
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [message, setMessage] = useState("");
@@ -156,6 +160,13 @@ export function App() {
       <nav className="view-tabs" aria-label={t("workspace")}>
         <button
           type="button"
+          className={view === "start" ? "active" : ""}
+          onClick={() => setView("start")}
+        >
+          Start & help
+        </button>
+        <button
+          type="button"
           className={view === "tracking" ? "active" : ""}
           onClick={() => setView("tracking")}
         >
@@ -198,7 +209,17 @@ export function App() {
         </button>
       </nav>
 
-      {view === "tracking" ? (
+      {showOnboarding ? (
+        <FirstRun
+          onComplete={() => {
+            localStorage.setItem("careerpilot.onboarding.complete", "true");
+            setShowOnboarding(false);
+            setView("resume");
+          }}
+        />
+      ) : view === "start" ? (
+        <ReleaseWorkspace onRestartOnboarding={() => setShowOnboarding(true)} />
+      ) : view === "tracking" ? (
         <TrackingWorkspace />
       ) : view === "automation" ? (
         <AutomationWorkspace />
@@ -313,6 +334,48 @@ export function App() {
         </>
       )}
     </main>
+  );
+}
+
+function FirstRun({ onComplete }: { onComplete: () => void }) {
+  return (
+    <section className="first-run" aria-labelledby="first-run-title">
+      <p className="eyebrow">WELCOME TO CAREERPILOT</p>
+      <h1 id="first-run-title">Your application copilot, on your computer.</h1>
+      <p className="lede">
+        CareerPilot turns verified career facts into job matches, tailored
+        documents, and supervised application autofill.
+      </p>
+      <div className="onboarding-grid">
+        <article className="panel">
+          <strong className="step-number">1</strong>
+          <h2>Build your fact bank</h2>
+          <p className="muted">
+            Import a resume and approve only accurate facts.
+          </p>
+        </article>
+        <article className="panel">
+          <strong className="step-number">2</strong>
+          <h2>Find the right jobs</h2>
+          <p className="muted">
+            Use explainable matching, not opaque AI scores.
+          </p>
+        </article>
+        <article className="panel">
+          <strong className="step-number">3</strong>
+          <h2>Apply with control</h2>
+          <p className="muted">
+            Autofill routine fields and review before submit.
+          </p>
+        </article>
+      </div>
+      <div className="onboarding-actions">
+        <button type="button" className="button" onClick={onComplete}>
+          Start with my resume
+        </button>
+        <span>No account or paid API required for local use.</span>
+      </div>
+    </section>
   );
 }
 

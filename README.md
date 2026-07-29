@@ -5,6 +5,9 @@ career knowledge base, resume ingestion, optional local AI intelligence, job dis
 explainable matching, document generation, supervised browser automation, application
 tracking, and release-hardening foundations.
 
+Licensed under Apache-2.0. CareerPilot is an original clean-room implementation and
+does not include ApplyPilot source code.
+
 ## Prerequisites
 
 - Windows 11
@@ -70,6 +73,14 @@ The web UI is served on port 8080 and the API on port 8000. Backup and restore:
 ```
 
 See `docs/milestones/M9.md` for the security model and release checklist.
+
+## Version 1 documentation
+
+- `docs/USER_GUIDE.md`
+- `docs/DEVELOPMENT.md`
+- `docs/DEPLOYMENT.md`
+- `docs/RELEASE_CHECKLIST.md`
+- `CHANGELOG.md`
 
 ## Career profile API
 

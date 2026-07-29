@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { App } from "./App";
 
 afterEach(() => {
   vi.restoreAllMocks();
+  localStorage.clear();
 });
 
 describe("App", () => {
@@ -16,6 +17,12 @@ describe("App", () => {
 
     render(<App />);
 
+    expect(
+      screen.getByRole("heading", { name: /application copilot/i }),
+    ).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: /start with my resume/i }),
+    );
     expect(
       screen.getByRole("heading", { name: /trusted career data/i }),
     ).toBeInTheDocument();

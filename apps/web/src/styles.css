@@ -33,6 +33,15 @@ button {
   cursor: pointer;
 }
 
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(67, 227, 159, 0.55);
+  outline-offset: 3px;
+}
+
 h1,
 h2,
 p {
@@ -287,6 +296,82 @@ h2 {
   padding: 90px 0 58px;
 }
 
+.compact-hero {
+  padding-bottom: 36px;
+}
+
+.first-run {
+  max-width: 980px;
+  padding: 76px 0;
+}
+
+.first-run h1 {
+  max-width: 900px;
+}
+
+.onboarding-grid,
+.release-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 42px;
+}
+
+.step-number {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 36px;
+  place-items: center;
+  border-radius: 50%;
+  color: #07100d;
+  background: #43e39f;
+}
+
+.onboarding-actions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 26px;
+  color: #a9b8b1;
+}
+
+.release-workspace {
+  padding-top: 18px;
+}
+
+.release-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+.diagnostic-list {
+  margin: 0;
+}
+
+.diagnostic-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 0;
+  border-top: 1px solid #26342e;
+}
+
+.diagnostic-list dt {
+  color: #91a39a;
+}
+
+.diagnostic-list dd {
+  margin: 0;
+  color: #43e39f;
+}
+
+.help-list {
+  padding-left: 1.25rem;
+  color: #b8c7bf;
+  line-height: 1.7;
+}
+
 .eyebrow {
   margin: 0 0 14px;
   color: #43e39f;
@@ -535,8 +620,15 @@ input[type="file"] {
   .ai-grid,
   .summary-grid,
   .suggestions,
-  .form-grid {
+  .form-grid,
+  .onboarding-grid,
+  .release-grid {
     grid-template-columns: 1fr;
+  }
+
+  .onboarding-actions {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .dropzone {
