@@ -11,6 +11,7 @@ from careerpilot.api.automation import router as automation_router
 from careerpilot.api.beta import router as beta_router
 from careerpilot.api.coach import router as coach_router
 from careerpilot.api.documents import router as documents_router
+from careerpilot.api.enterprise import router as enterprise_router
 from careerpilot.api.health import router as health_router
 from careerpilot.api.jobs import router as jobs_router
 from careerpilot.api.matching import router as matching_router
@@ -71,3 +72,4 @@ app.include_router(beta_router)
 app.include_router(sync_router)
 app.include_router(coach_router)
 app.include_router(platform_router)
+app.include_router(enterprise_router)

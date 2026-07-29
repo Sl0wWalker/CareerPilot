@@ -20,6 +20,22 @@ from careerpilot.models.documents import (
     ResumeTemplate,
     ScreeningAnswer,
 )
+from careerpilot.models.enterprise import (
+    AgentMemory,
+    AgentRun,
+    EnterprisePolicy,
+    License,
+    Membership,
+    Organization,
+    SSOConnection,
+    UsageQuota,
+)
+from careerpilot.models.enterprise import (
+    AuditEvent as EnterpriseAuditEvent,
+)
+from careerpilot.models.enterprise import (
+    Workspace as EnterpriseWorkspace,
+)
 from careerpilot.models.jobs import (
     Company,
     Job,
@@ -141,4 +157,16 @@ __all__ += [
     "PluginInstallation",
     "WebhookDelivery",
     "WebhookSubscription",
+]
+__all__ += [
+    "AgentMemory",
+    "AgentRun",
+    "EnterpriseAuditEvent",
+    "EnterprisePolicy",
+    "EnterpriseWorkspace",
+    "License",
+    "Membership",
+    "Organization",
+    "SSOConnection",
+    "UsageQuota",
 ]
