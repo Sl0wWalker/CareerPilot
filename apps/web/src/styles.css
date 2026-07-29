@@ -481,3 +481,142 @@ input[type="file"] {
     flex-direction: column;
   }
 }
+
+.job-toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto auto auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 18px;
+}
+
+.job-toolbar input,
+.job-toolbar select {
+  padding: 12px;
+  border: 1px solid #31433b;
+  border-radius: 10px;
+  color: #eaf0ec;
+  background: #07100d;
+}
+
+.favorite-filter {
+  display: flex;
+  gap: 7px;
+  color: #a9b9b0;
+}
+
+.job-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.4fr;
+  gap: 18px;
+}
+
+.job-list {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.job-card {
+  padding: 20px;
+  border: 1px solid #2e4038;
+  border-radius: 16px;
+  color: #eaf0ec;
+  text-align: left;
+  background: #0d1914;
+}
+
+.job-card.selected {
+  border-color: #43e39f;
+  box-shadow: 0 0 0 1px rgba(67, 227, 159, 0.2);
+}
+
+.job-card h2 {
+  margin: 12px 0 4px;
+  font-size: 1.08rem;
+}
+
+.job-card p {
+  margin-bottom: 0;
+  color: #91a39a;
+}
+
+.source-pill,
+.score {
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #43e39f;
+  background: rgba(67, 227, 159, 0.1);
+  font-size: 0.69rem;
+  text-transform: uppercase;
+}
+
+.score {
+  float: right;
+}
+
+.job-detail {
+  min-height: 460px;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.relevance {
+  margin: 18px 0;
+  padding: 16px;
+  border: 1px solid #31433b;
+  border-radius: 14px;
+  background: #07100d;
+}
+
+.relevance span {
+  display: block;
+  margin: 6px 0;
+}
+
+.strength {
+  color: #43e39f;
+}
+
+.gap {
+  color: #f6d57d;
+}
+
+.job-description {
+  max-height: 300px;
+  overflow: auto;
+  color: #b7c4bd;
+  white-space: pre-line;
+}
+
+.apply-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.saved-searches {
+  margin-top: 18px;
+}
+
+.saved-searches > button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  border-top: 1px solid #25362f;
+  color: #dbe5df;
+  background: transparent;
+}
+
+@media (max-width: 800px) {
+  .job-toolbar,
+  .job-layout {
+    grid-template-columns: 1fr;
+  }
+}

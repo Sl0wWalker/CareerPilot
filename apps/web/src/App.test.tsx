@@ -20,6 +20,9 @@ describe("App", () => {
       screen.getByRole("heading", { name: /trusted career data/i }),
     ).toBeInTheDocument();
     expect(screen.getByLabelText(/choose resume/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /job discovery/i }),
+    ).toBeInTheDocument();
     expect(await screen.findByText("Local service online")).toBeInTheDocument();
   });
 });

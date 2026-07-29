@@ -93,3 +93,11 @@ apps/web       React + TypeScript + Vite dashboard and frontend tests
 data           Local runtime data (ignored by Git except for the placeholder)
 scripts        Windows setup, development, test, and validation helpers
 ```
+## Milestone 4
+
+CareerPilot now includes a local intelligent job-discovery workspace with Greenhouse,
+Lever, Ashby, Workday-compatible JSON, generic JSON, and RSS source adapters. Listings are
+normalized, deduplicated, searchable, filterable, and can be saved or analyzed for
+AI-assisted relevance using the existing local provider configuration.
+
+Source syncs are explicit. Saved schedule definitions do not run in the background yet.

@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { AIWorkspace } from "./AIWorkspace";
+import { JobWorkspace } from "./JobWorkspace";
 
 type ApiState = "checking" | "online" | "offline";
 type UploadState = "idle" | "uploading" | "complete" | "error";
@@ -34,7 +35,7 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000";
 
 export function App() {
-  const [view, setView] = useState<"resume" | "ai">("resume");
+  const [view, setView] = useState<"resume" | "ai" | "jobs">("resume");
   const [apiState, setApiState] = useState<ApiState>("checking");
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [message, setMessage] = useState("");
@@ -149,6 +150,13 @@ export function App() {
       <nav className="view-tabs" aria-label="Workspace">
         <button
           type="button"
+          className={view === "jobs" ? "active" : ""}
+          onClick={() => setView("jobs")}
+        >
+          Job discovery
+        </button>
+        <button
+          type="button"
           className={view === "ai" ? "active" : ""}
           onClick={() => setView("ai")}
         >
@@ -163,7 +171,9 @@ export function App() {
         </button>
       </nav>
 
-      {view === "ai" ? (
+      {view === "jobs" ? (
+        <JobWorkspace />
+      ) : view === "ai" ? (
         <AIWorkspace />
       ) : (
         <>

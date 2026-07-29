@@ -22,7 +22,16 @@ def test_migrations_upgrade_and_downgrade(
 
     engine = create_engine(database_url)
     tables = set(inspect(engine).get_table_names())
-    assert {"career_profiles", "resume_imports", "parsed_facts"} <= tables
+    assert {
+        "career_profiles",
+        "resume_imports",
+        "parsed_facts",
+        "companies",
+        "job_sources",
+        "jobs",
+        "saved_searches",
+        "scheduled_searches",
+    } <= tables
 
     command.downgrade(config, "base")
     assert set(inspect(engine).get_table_names()) == {"alembic_version"}
