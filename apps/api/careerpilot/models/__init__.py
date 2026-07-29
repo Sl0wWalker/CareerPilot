@@ -36,6 +36,14 @@ from careerpilot.models.enterprise import (
 from careerpilot.models.enterprise import (
     Workspace as EnterpriseWorkspace,
 )
+from careerpilot.models.intelligence import (
+    AutonomousAgentConfig,
+    CareerStrategy,
+    MarketInsight,
+    NotificationChannel,
+    OpportunityMonitor,
+    SkillForecast,
+)
 from careerpilot.models.jobs import (
     Company,
     Job,
@@ -158,6 +166,14 @@ __all__ += [
     "MockInterviewResponse",
     "MockInterviewSession",
     "OfferComparison",
+]
+__all__ += [
+    "AutonomousAgentConfig",
+    "CareerStrategy",
+    "MarketInsight",
+    "NotificationChannel",
+    "OpportunityMonitor",
+    "SkillForecast",
 ]
 __all__ += [
     "MarketplacePackage",
