@@ -3,6 +3,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
+from careerpilot import models  # noqa: F401
 from careerpilot.core.config import get_settings
 from careerpilot.db.base import Base
 
@@ -40,4 +41,3 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
-

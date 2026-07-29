@@ -10,6 +10,7 @@ requires-python = ">=3.12,<3.13"
 dependencies = [
   "alembic>=1.13,<2",
   "fastapi>=0.115,<1",
+  "email-validator>=2.2,<3",
   "pydantic-settings>=2.6,<3",
   "sqlalchemy>=2.0,<3",
   "structlog>=24.4,<26",
@@ -29,7 +30,7 @@ packages = ["careerpilot"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q"
+addopts = "-q -p no:cacheprovider"
 
 [tool.ruff]
 target-version = "py312"
@@ -37,4 +38,3 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
-

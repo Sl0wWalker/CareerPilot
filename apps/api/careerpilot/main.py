@@ -6,10 +6,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from careerpilot.api.health import router as health_router
+from careerpilot.api.profile import router as profile_router
 from careerpilot.core.config import get_settings
 from careerpilot.core.logging import configure_logging
-from careerpilot.db.base import Base
-from careerpilot.db.session import engine
 
 settings = get_settings()
 configure_logging(settings.log_level)
@@ -18,7 +17,6 @@ logger = structlog.get_logger()
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-    Base.metadata.create_all(bind=engine)
     logger.info("application_started", environment=settings.environment)
     yield
     logger.info("application_stopped")
@@ -33,3 +31,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(health_router)
+app.include_router(profile_router)

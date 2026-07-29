@@ -1,12 +1,12 @@
 # CareerPilot
 
-CareerPilot is a free, local-first job application assistant. Milestone 0 provides
-the tested local foundation only: a FastAPI service, a React dashboard, SQLite,
-database migrations, configuration, structured logs, health checks, and developer
-scripts.
+CareerPilot is a free, local-first job application assistant. The current foundation
+provides a FastAPI service, a React dashboard, SQLite, database migrations,
+configuration, structured logs, health checks, developer scripts, and a structured
+single-user career profile.
 
-AI, job discovery, resume processing, matching, and browser automation are
-intentionally outside this milestone.
+AI, job discovery, resume processing, matching, and browser automation remain
+intentionally outside the current milestone.
 
 ## Prerequisites
 
@@ -52,7 +52,18 @@ From the repository root:
 .\apps\api\.venv\Scripts\python.exe -m alembic -c apps\api\alembic.ini upgrade head
 ```
 
-No application tables exist yet; migrations are ready for the next milestone.
+Migrations create the career profile and related career-knowledge tables.
+
+## Career profile API
+
+- `GET /profile` retrieves the local profile.
+- `POST /profile` creates the profile and optional nested career records.
+- `PATCH /profile` updates profile-level fields.
+- `GET /profile/full` retrieves the profile with all related career records.
+
+CareerPilot supports one local profile in this milestone. Persistence is separated
+into repository, service, and API layers; details are recorded in
+`docs/milestones/M1.md`.
 
 ## Repository layout
 
@@ -62,4 +73,3 @@ apps/web       React + TypeScript + Vite dashboard and frontend tests
 data           Local runtime data (ignored by Git except for the placeholder)
 scripts        Windows setup, development, test, and validation helpers
 ```
-
