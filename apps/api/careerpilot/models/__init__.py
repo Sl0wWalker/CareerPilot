@@ -31,6 +31,14 @@ from careerpilot.models.profile import (
     Skill,
 )
 from careerpilot.models.resume import ParsedFact, ResumeImport
+from careerpilot.models.tracking import (
+    Application,
+    ApplicationEvent,
+    ApplicationNote,
+    Contact,
+    FollowUp,
+    InterviewPlaceholder,
+)
 
 __all__ = [
     "Achievement",
@@ -61,4 +69,10 @@ __all__ = [
     "ScheduledSearch",
     "ScreeningAnswer",
     "Skill",
+    "Application",
+    "ApplicationEvent",
+    "ApplicationNote",
+    "Contact",
+    "FollowUp",
+    "InterviewPlaceholder",
 ]

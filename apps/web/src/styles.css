@@ -550,6 +550,162 @@ input[type="file"] {
   }
 }
 
+.tracking-workspace {
+  display: grid;
+  gap: 18px;
+  padding-top: 64px;
+}
+.tracking-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+.tracking-head h1 {
+  max-width: 820px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+.export-link {
+  align-self: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.metric {
+  padding: 18px;
+  border: 1px solid #26342e;
+  border-radius: 16px;
+  background: #0d1914;
+}
+.metric span {
+  display: block;
+  color: #91a39a;
+  font-size: 0.72rem;
+}
+.metric strong {
+  display: block;
+  margin-top: 8px;
+  color: #43e39f;
+  font-size: 1.55rem;
+}
+.tracking-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tracking-toolbar input,
+.note-composer input {
+  padding: 11px 13px;
+  border: 1px solid #31433b;
+  border-radius: 10px;
+  color: #edf4ef;
+  background: #07100d;
+}
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(180px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+.kanban-column {
+  min-height: 330px;
+  padding: 12px;
+  border: 1px solid #26342e;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+}
+.kanban-column header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: #a9b8b1;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+}
+.application-card {
+  width: 100%;
+  margin-bottom: 9px;
+  padding: 13px;
+  border: 1px solid #31433b;
+  border-radius: 12px;
+  color: #edf4ef;
+  background: #0d1914;
+  text-align: left;
+}
+.application-card small {
+  display: block;
+  margin: 6px 0;
+  color: #91a39a;
+}
+.application-card span {
+  display: inline-block;
+  margin: 2px;
+  padding: 3px 6px;
+  border-radius: 99px;
+  color: #43e39f;
+  background: rgba(67, 227, 159, 0.1);
+  font-size: 0.65rem;
+}
+.tracking-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.timeline-row {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid #26342e;
+}
+.timeline-row > span {
+  width: 9px;
+  height: 9px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #43e39f;
+}
+.timeline-row small {
+  display: block;
+  margin-top: 4px;
+  color: #91a39a;
+}
+.note-composer {
+  display: flex;
+  gap: 8px;
+}
+.note-composer input {
+  flex: 1;
+}
+.note-composer button {
+  border: 0;
+  border-radius: 9px;
+  color: #07100d;
+  background: #43e39f;
+}
+.note,
+.contact {
+  padding: 12px;
+  border: 1px solid #26342e;
+  border-radius: 10px;
+}
+@media (max-width: 900px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tracking-detail {
+    grid-template-columns: 1fr;
+  }
+  .tracking-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 .job-toolbar {
   display: grid;
   grid-template-columns: 2fr 1fr auto auto auto;

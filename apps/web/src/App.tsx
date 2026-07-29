@@ -9,6 +9,7 @@ import { AIWorkspace } from "./AIWorkspace";
 import { AutomationWorkspace } from "./AutomationWorkspace";
 import { DocumentWorkspace } from "./DocumentWorkspace";
 import { JobWorkspace } from "./JobWorkspace";
+import { TrackingWorkspace } from "./TrackingWorkspace";
 
 type ApiState = "checking" | "online" | "offline";
 type UploadState = "idle" | "uploading" | "complete" | "error";
@@ -38,7 +39,7 @@ const API_BASE_URL =
 
 export function App() {
   const [view, setView] = useState<
-    "resume" | "ai" | "jobs" | "documents" | "automation"
+    "resume" | "ai" | "jobs" | "documents" | "automation" | "tracking"
   >("resume");
   const [apiState, setApiState] = useState<ApiState>("checking");
   const [uploadState, setUploadState] = useState<UploadState>("idle");
@@ -154,6 +155,13 @@ export function App() {
       <nav className="view-tabs" aria-label="Workspace">
         <button
           type="button"
+          className={view === "tracking" ? "active" : ""}
+          onClick={() => setView("tracking")}
+        >
+          Applications
+        </button>
+        <button
+          type="button"
           className={view === "automation" ? "active" : ""}
           onClick={() => setView("automation")}
         >
@@ -189,7 +197,9 @@ export function App() {
         </button>
       </nav>
 
-      {view === "automation" ? (
+      {view === "tracking" ? (
+        <TrackingWorkspace />
+      ) : view === "automation" ? (
         <AutomationWorkspace />
       ) : view === "documents" ? (
         <DocumentWorkspace />

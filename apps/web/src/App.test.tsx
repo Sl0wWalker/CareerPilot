@@ -23,6 +23,9 @@ describe("App", () => {
     expect(
       screen.getByRole("button", { name: /job discovery/i }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /^applications$/i }),
+    ).toBeInTheDocument();
     expect(await screen.findByText("Local service online")).toBeInTheDocument();
   });
 });

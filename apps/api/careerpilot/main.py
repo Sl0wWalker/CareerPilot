@@ -13,6 +13,7 @@ from careerpilot.api.jobs import router as jobs_router
 from careerpilot.api.matching import router as matching_router
 from careerpilot.api.profile import router as profile_router
 from careerpilot.api.resume import router as resume_router
+from careerpilot.api.tracking import router as tracking_router
 from careerpilot.core.config import get_settings
 from careerpilot.core.logging import configure_logging
 
@@ -44,3 +45,4 @@ app.include_router(automation_router)
 app.include_router(documents_router)
 app.include_router(profile_router)
 app.include_router(resume_router)
+app.include_router(tracking_router)
