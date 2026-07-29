@@ -65,10 +65,14 @@ class AutomationService:
         run.attempt_count += 1
         if run.attempt_count > run.max_attempts:
             raise ValueError("maximum retry count exceeded")
-        # Browser execution deliberately stops at final review. Real page interaction is
-        # delegated to Playwright adapters; dry-run is the safe default and test path.
+        if not run.dry_run:
+            raise ValueError(
+                "live browser execution is not wired to the API; use supervised dry-run"
+            )
+        # Dry-run records readiness only. Browser interaction must be performed by the
+        # supervised Playwright runner and must stop before final submission.
         run.checkpoint = "ready_for_submission"
-        run.status = "dry_run_complete" if run.dry_run else "running"
+        run.status = "dry_run_complete"
         self.repository.add_step(
             run.id, "browser_execution", "complete",
             dry_run=run.dry_run, stopped_before_submit=True,

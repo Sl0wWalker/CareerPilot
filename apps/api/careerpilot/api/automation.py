@@ -108,13 +108,19 @@ def execute(run_id: UUID, session: Db):
 @router.get("/adapters", response_model=list[AdapterSettingRead])
 def adapter_settings(session: Db):
     repository = AutomationRepository(session)
-    names = ("greenhouse", "lever", "ashby", "workday", "generic")
+    names = (
+        "greenhouse", "lever", "ashby", "workday", "smartrecruiters",
+        "icims", "taleo", "successfactors", "generic",
+    )
     return [repository.setting(name) for name in names]
 
 
 @router.patch("/adapters/{adapter}", response_model=AdapterSettingRead)
 def update_adapter(adapter: str, payload: AdapterSettingUpdate, session: Db):
-    if adapter not in {"greenhouse", "lever", "ashby", "workday", "generic"}:
+    if adapter not in {
+        "greenhouse", "lever", "ashby", "workday", "smartrecruiters",
+        "icims", "taleo", "successfactors", "generic",
+    }:
         raise HTTPException(status_code=404, detail="unknown adapter")
     repository = AutomationRepository(session)
     value = repository.setting(adapter)

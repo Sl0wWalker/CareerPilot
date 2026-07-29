@@ -36,6 +36,10 @@ def test_adapter_detection():
     assert adapter_for_url("https://boards.greenhouse.io/acme/jobs/1").name == "greenhouse"
     assert adapter_for_url("https://jobs.lever.co/acme/1").name == "lever"
     assert adapter_for_url("https://acme.myworkdayjobs.com/job").name == "workday"
+    assert adapter_for_url("https://jobs.smartrecruiters.com/acme/1").name == "smartrecruiters"
+    assert adapter_for_url("https://careers-acme.icims.com/jobs/1").name == "icims"
+    assert adapter_for_url("https://acme.taleo.net/careersection/jobdetail.ftl").name == "taleo"
+    assert adapter_for_url("https://acme.successfactors.com/career").name == "successfactors"
     assert adapter_for_url("https://example.test/apply").name == "generic"
 
 
@@ -112,3 +116,18 @@ def test_execution_requires_human_approval():
         assert "approval" in str(error)
     else:
         raise AssertionError("unapproved run executed")
+
+
+def test_live_execution_is_not_reported_as_running():
+    repository = MemoryAutomation()
+    run = AutomationRun(
+        id=uuid4(), profile_id=uuid4(), job_id=uuid4(), resume_id=uuid4(),
+        adapter="generic", application_url="https://example.test", dry_run=False,
+        approved=True, validation_errors=[], attempt_count=0, max_attempts=3,
+    )
+    try:
+        AutomationService(repository).execute(run)
+    except ValueError as error:
+        assert "not wired" in str(error)
+    else:
+        raise AssertionError("unimplemented live execution was reported as running")
