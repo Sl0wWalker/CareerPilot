@@ -1,0 +1,11 @@
+{
+  "name": "CareerPilot",
+  "short_name": "CareerPilot",
+  "description": "Local-first career and job application assistant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#0c7c72",
+  "lang": "en",
+  "categories": ["productivity", "business"]
+}

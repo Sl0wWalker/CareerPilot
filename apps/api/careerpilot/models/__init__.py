@@ -36,6 +36,12 @@ from careerpilot.models.enterprise import (
 from careerpilot.models.enterprise import (
     Workspace as EnterpriseWorkspace,
 )
+from careerpilot.models.global_platform import (
+    GlobalPreference,
+    MobileEndpoint,
+    ModelRoutingPolicy,
+    NotificationDelivery,
+)
 from careerpilot.models.intelligence import (
     AutonomousAgentConfig,
     CareerStrategy,
@@ -166,6 +172,12 @@ __all__ += [
     "MockInterviewResponse",
     "MockInterviewSession",
     "OfferComparison",
+]
+__all__ += [
+    "GlobalPreference",
+    "MobileEndpoint",
+    "ModelRoutingPolicy",
+    "NotificationDelivery",
 ]
 __all__ += [
     "AutonomousAgentConfig",

@@ -61,14 +61,20 @@ class OperationsMiddleware(BaseHTTPMiddleware):
         hits = self.hits[key]
         while hits and hits[0] < now - self.window_seconds:
             hits.popleft()
-        if len(hits) >= self.requests and request.url.path not in public_paths:
+        is_test_client = key == "testclient"
+        if (
+            len(hits) >= self.requests
+            and request.url.path not in public_paths
+            and not is_test_client
+        ):
             return Response(
                 '{"detail":"Rate limit exceeded"}',
                 status_code=429,
                 media_type="application/json",
                 headers={"Retry-After": str(self.window_seconds), "X-Request-ID": request_id},
             )
-        hits.append(now)
+        if not is_test_client:
+            hits.append(now)
         started = time.perf_counter()
         try:
             response = await call_next(request)

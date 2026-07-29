@@ -12,6 +12,7 @@ import { CoachWorkspace } from "./CoachWorkspace";
 import { DeveloperWorkspace } from "./DeveloperWorkspace";
 import { DocumentWorkspace } from "./DocumentWorkspace";
 import { EnterpriseWorkspace } from "./EnterpriseWorkspace";
+import { GlobalWorkspace } from "./GlobalWorkspace";
 import { IntelligenceWorkspace } from "./IntelligenceWorkspace";
 import { t } from "./i18n";
 import { JobWorkspace } from "./JobWorkspace";
@@ -62,6 +63,7 @@ export function App() {
     | "enterprise"
     | "marketplace"
     | "intelligence"
+    | "global"
   >("start");
   const [showOnboarding, setShowOnboarding] = useState(
     () => localStorage.getItem("careerpilot.onboarding.complete") !== "true",
@@ -180,6 +182,13 @@ export function App() {
       <nav className="view-tabs" aria-label={t("workspace")}>
         <button
           type="button"
+          className={view === "global" ? "active" : ""}
+          onClick={() => setView("global")}
+        >
+          Global & mobile
+        </button>
+        <button
+          type="button"
           className={view === "intelligence" ? "active" : ""}
           onClick={() => setView("intelligence")}
         >
@@ -286,6 +295,8 @@ export function App() {
             setView("resume");
           }}
         />
+      ) : view === "global" ? (
+        <GlobalWorkspace />
       ) : view === "start" ? (
         <ReleaseWorkspace onRestartOnboarding={() => setShowOnboarding(true)} />
       ) : view === "tracking" ? (
