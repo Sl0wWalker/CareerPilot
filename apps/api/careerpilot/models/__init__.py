@@ -40,6 +40,15 @@ from careerpilot.models.profile import (
     Skill,
 )
 from careerpilot.models.resume import ParsedFact, ResumeImport
+from careerpilot.models.sync import (
+    ConnectedAccount,
+    SyncChange,
+    SyncConflict,
+    SyncDevice,
+    WebhookEndpoint,
+    Workspace,
+    WorkspaceMember,
+)
 from careerpilot.models.tracking import (
     Application,
     ApplicationEvent,
@@ -97,4 +106,11 @@ __all__ += [
     "SatisfactionResponse",
     "UsageEvent",
     "User",
+    "ConnectedAccount",
+    "SyncChange",
+    "SyncConflict",
+    "SyncDevice",
+    "WebhookEndpoint",
+    "Workspace",
+    "WorkspaceMember",
 ]

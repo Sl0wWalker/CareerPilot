@@ -16,6 +16,7 @@ from careerpilot.api.matching import router as matching_router
 from careerpilot.api.profile import router as profile_router
 from careerpilot.api.release import router as release_router
 from careerpilot.api.resume import router as resume_router
+from careerpilot.api.sync import router as sync_router
 from careerpilot.api.tracking import router as tracking_router
 from careerpilot.core.config import get_settings
 from careerpilot.core.logging import configure_logging
@@ -65,3 +66,4 @@ app.include_router(resume_router)
 app.include_router(tracking_router)
 app.include_router(release_router)
 app.include_router(beta_router)
+app.include_router(sync_router)

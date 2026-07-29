@@ -5,6 +5,10 @@ career knowledge base, resume ingestion, optional local AI intelligence, job dis
 explainable matching, document generation, supervised browser automation, application
 tracking, and release-hardening foundations.
 
+Milestone 12 adds optional offline-first multi-device sync, granular shared workspaces,
+connected-account foundations, and webhook APIs. Local use remains fully supported without
+connecting a cloud provider. See `docs/milestones/M12.md` for the protocol and privacy model.
+
 Licensed under Apache-2.0. CareerPilot is an original clean-room implementation and
 does not include ApplyPilot source code.
 

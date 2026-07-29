@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Add cursor-based offline-first synchronization with explicit conflict resolution.
+- Add optional Gmail, Google Calendar, Google Drive, OneDrive, Dropbox, and LinkedIn connections.
+- Add least-privilege shared workspaces and third-party webhook foundations.
+
 ## 1.0.0 - 2026-07-29
 
 CareerPilot v1 delivers the complete local-first application workflow:
