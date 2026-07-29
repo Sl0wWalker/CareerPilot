@@ -3,10 +3,11 @@
 CareerPilot is a free, local-first job application assistant. The current foundation
 provides a FastAPI service, a React dashboard, SQLite, database migrations,
 configuration, structured logs, health checks, developer scripts, a structured
-single-user career profile, and deterministic resume ingestion.
+single-user career profile, deterministic resume ingestion, optional AI profile
+intelligence, reviewable suggestions, and local semantic search.
 
-AI, job discovery, matching, resume tailoring, and browser automation remain
-intentionally outside the current milestone.
+Job discovery, matching, resume tailoring, and browser automation remain intentionally
+outside the current milestone.
 
 ## Prerequisites
 

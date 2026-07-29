@@ -5,6 +5,7 @@ import structlog
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from careerpilot.api.ai import router as ai_router
 from careerpilot.api.health import router as health_router
 from careerpilot.api.profile import router as profile_router
 from careerpilot.api.resume import router as resume_router
@@ -32,5 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(health_router)
+app.include_router(ai_router)
 app.include_router(profile_router)
 app.include_router(resume_router)

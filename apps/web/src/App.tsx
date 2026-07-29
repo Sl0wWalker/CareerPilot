@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { AIWorkspace } from "./AIWorkspace";
 
 type ApiState = "checking" | "online" | "offline";
 type UploadState = "idle" | "uploading" | "complete" | "error";
@@ -33,6 +34,7 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000";
 
 export function App() {
+  const [view, setView] = useState<"resume" | "ai">("resume");
   const [apiState, setApiState] = useState<ApiState>("checking");
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [message, setMessage] = useState("");
@@ -144,106 +146,128 @@ export function App() {
           Local service {apiState}
         </div>
       </header>
-
-      <section className="hero">
-        <p className="eyebrow">MILESTONE 2 · CAREER KNOWLEDGE</p>
-        <h1>Turn your resume into trusted career data.</h1>
-        <p className="lede">
-          Upload a PDF, DOCX, or TXT resume. CareerPilot extracts facts locally,
-          shows its evidence, and waits for your approval.
-        </p>
-      </section>
-
-      <section className="workspace">
-        <label
-          className={`dropzone ${dragging ? "dropzone-active" : ""}`}
-          htmlFor="resume-file"
-          onDragEnter={() => setDragging(true)}
-          onDragLeave={() => setDragging(false)}
-          onDragOver={(event) => event.preventDefault()}
-          onDrop={dropFile}
+      <nav className="view-tabs" aria-label="Workspace">
+        <button
+          type="button"
+          className={view === "ai" ? "active" : ""}
+          onClick={() => setView("ai")}
         >
-          <span className="drop-icon">↥</span>
-          <h2>Import your resume</h2>
-          <p>Drop a file here or choose one from your computer.</p>
-          <span className="button">Choose resume</span>
-          <input
-            id="resume-file"
-            type="file"
-            accept=".pdf,.docx,.txt"
-            onChange={chooseFile}
-          />
-          {uploadState !== "idle" && (
-            <div
-              className={`upload-state upload-${uploadState}`}
-              aria-live="polite"
-            >
-              <span className="progress">
-                <span />
-              </span>
-              {message}
-            </div>
-          )}
-        </label>
+          AI intelligence
+        </button>
+        <button
+          type="button"
+          className={view === "resume" ? "active" : ""}
+          onClick={() => setView("resume")}
+        >
+          Resume imports
+        </button>
+      </nav>
 
-        <aside className="history">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">IMPORT HISTORY</p>
-              <h2>Recent resumes</h2>
-            </div>
-            <span>{imports.length}</span>
-          </div>
-          {imports.length === 0 ? (
-            <p className="empty">No resumes imported yet.</p>
-          ) : (
-            imports.map((item) => (
-              <button
-                type="button"
-                className="history-row"
-                key={item.id}
-                onClick={() => void openReview(item.id)}
-              >
-                <strong>{item.filename}</strong>
-                <span>
-                  {new Date(item.created_at).toLocaleDateString()} ·{" "}
-                  {item.parser_version}
-                </span>
-                <em>{item.parsing_status.replace("_", " ")}</em>
-              </button>
-            ))
-          )}
-        </aside>
-      </section>
+      {view === "ai" ? (
+        <AIWorkspace />
+      ) : (
+        <>
+          <section className="hero">
+            <p className="eyebrow">CAREER KNOWLEDGE</p>
+            <h1>Turn your resume into trusted career data.</h1>
+            <p className="lede">
+              Upload a PDF, DOCX, or TXT resume. CareerPilot extracts facts
+              locally, shows its evidence, and waits for your approval.
+            </p>
+          </section>
 
-      {selected && (
-        <section className="review">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">REVIEW QUEUE</p>
-              <h2>{selected.filename}</h2>
-            </div>
-            <button
-              type="button"
-              className="button"
-              onClick={() => void approveImport()}
+          <section className="workspace">
+            <label
+              className={`dropzone ${dragging ? "dropzone-active" : ""}`}
+              htmlFor="resume-file"
+              onDragEnter={() => setDragging(true)}
+              onDragLeave={() => setDragging(false)}
+              onDragOver={(event) => event.preventDefault()}
+              onDrop={dropFile}
             >
-              Approve accepted facts
-            </button>
-          </div>
-          {selected.warnings.length > 0 && (
-            <div className="warnings">
-              {selected.warnings.map((warning) => (
-                <p key={warning}>⚠ {warning}</p>
-              ))}
-            </div>
+              <span className="drop-icon">↥</span>
+              <h2>Import your resume</h2>
+              <p>Drop a file here or choose one from your computer.</p>
+              <span className="button">Choose resume</span>
+              <input
+                id="resume-file"
+                type="file"
+                accept=".pdf,.docx,.txt"
+                onChange={chooseFile}
+              />
+              {uploadState !== "idle" && (
+                <div
+                  className={`upload-state upload-${uploadState}`}
+                  aria-live="polite"
+                >
+                  <span className="progress">
+                    <span />
+                  </span>
+                  {message}
+                </div>
+              )}
+            </label>
+
+            <aside className="history">
+              <div className="section-heading">
+                <div>
+                  <p className="eyebrow">IMPORT HISTORY</p>
+                  <h2>Recent resumes</h2>
+                </div>
+                <span>{imports.length}</span>
+              </div>
+              {imports.length === 0 ? (
+                <p className="empty">No resumes imported yet.</p>
+              ) : (
+                imports.map((item) => (
+                  <button
+                    type="button"
+                    className="history-row"
+                    key={item.id}
+                    onClick={() => void openReview(item.id)}
+                  >
+                    <strong>{item.filename}</strong>
+                    <span>
+                      {new Date(item.created_at).toLocaleDateString()} ·{" "}
+                      {item.parser_version}
+                    </span>
+                    <em>{item.parsing_status.replace("_", " ")}</em>
+                  </button>
+                ))
+              )}
+            </aside>
+          </section>
+
+          {selected && (
+            <section className="review">
+              <div className="section-heading">
+                <div>
+                  <p className="eyebrow">REVIEW QUEUE</p>
+                  <h2>{selected.filename}</h2>
+                </div>
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => void approveImport()}
+                >
+                  Approve accepted facts
+                </button>
+              </div>
+              {selected.warnings.length > 0 && (
+                <div className="warnings">
+                  {selected.warnings.map((warning) => (
+                    <p key={warning}>⚠ {warning}</p>
+                  ))}
+                </div>
+              )}
+              <div className="facts">
+                {(selected.facts ?? []).map((fact) => (
+                  <FactCard key={fact.id} fact={fact} onUpdate={updateFact} />
+                ))}
+              </div>
+            </section>
           )}
-          <div className="facts">
-            {(selected.facts ?? []).map((fact) => (
-              <FactCard key={fact.id} fact={fact} onUpdate={updateFact} />
-            ))}
-          </div>
-        </section>
+        </>
       )}
     </main>
   );

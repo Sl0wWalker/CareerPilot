@@ -24,12 +24,118 @@ body {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
 button {
   cursor: pointer;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 8px;
+  padding-top: 18px;
+}
+
+.view-tabs button,
+.action-row button {
+  padding: 10px 14px;
+  border: 1px solid #31433b;
+  border-radius: 11px;
+  color: #cbd8d1;
+  background: transparent;
+}
+
+.view-tabs .active {
+  color: #07100d;
+  background: #43e39f;
+}
+
+.ai-workspace {
+  display: grid;
+  gap: 18px;
+  padding-top: 64px;
+}
+
+.ai-grid,
+.summary-grid,
+.suggestions,
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.panel {
+  padding: 28px;
+  border: 1px solid #26342e;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.good {
+  color: #43e39f;
+}
+
+.muted {
+  color: #a9b8b1;
+  line-height: 1.55;
+}
+
+.action-row,
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.search-row input,
+.form-grid input,
+.form-grid select {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #31433b;
+  border-radius: 11px;
+  color: #edf4ef;
+  background: #07100d;
+}
+
+.search-row input {
+  flex: 1;
+}
+
+.search-result,
+.suggestion {
+  padding: 16px 0;
+  border-top: 1px solid #26342e;
+}
+
+.search-result span,
+.suggestion span {
+  float: right;
+  color: #43e39f;
+}
+
+.suggestion pre {
+  overflow: auto;
+  padding: 12px;
+  border-radius: 10px;
+  color: #cfe0d7;
+  background: #07100d;
+}
+
+.suggestion em {
+  color: #43e39f;
+  text-transform: uppercase;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 7px;
+  color: #a9b8b1;
+  font-size: 0.82rem;
 }
 
 .shell {
@@ -357,7 +463,11 @@ input[type="file"] {
   }
 
   .workspace,
-  .facts {
+  .facts,
+  .ai-grid,
+  .summary-grid,
+  .suggestions,
+  .form-grid {
     grid-template-columns: 1fr;
   }
 
