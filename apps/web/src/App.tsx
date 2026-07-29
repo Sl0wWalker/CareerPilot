@@ -18,6 +18,7 @@ import { t } from "./i18n";
 import { JobWorkspace } from "./JobWorkspace";
 import { MarketplaceWorkspace } from "./MarketplaceWorkspace";
 import { ReleaseWorkspace } from "./ReleaseWorkspace";
+import { ResearchWorkspace } from "./ResearchWorkspace";
 import { SyncWorkspace } from "./SyncWorkspace";
 import { TrackingWorkspace } from "./TrackingWorkspace";
 
@@ -64,6 +65,7 @@ export function App() {
     | "marketplace"
     | "intelligence"
     | "global"
+    | "research"
   >("start");
   const [showOnboarding, setShowOnboarding] = useState(
     () => localStorage.getItem("careerpilot.onboarding.complete") !== "true",
@@ -182,6 +184,13 @@ export function App() {
       <nav className="view-tabs" aria-label={t("workspace")}>
         <button
           type="button"
+          className={view === "research" ? "active" : ""}
+          onClick={() => setView("research")}
+        >
+          Innovation Lab
+        </button>
+        <button
+          type="button"
           className={view === "global" ? "active" : ""}
           onClick={() => setView("global")}
         >
@@ -297,6 +306,8 @@ export function App() {
         />
       ) : view === "global" ? (
         <GlobalWorkspace />
+      ) : view === "research" ? (
+        <ResearchWorkspace />
       ) : view === "start" ? (
         <ReleaseWorkspace onRestartOnboarding={() => setShowOnboarding(true)} />
       ) : view === "tracking" ? (

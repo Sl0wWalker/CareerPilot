@@ -147,6 +147,12 @@ from careerpilot.models.coach import (
     OfferComparison,
 )
 from careerpilot.models.release import AuditEvent, User
+from careerpilot.models.research import (
+    EvaluationDataset,
+    ExperimentRun,
+    IncubatedFeature,
+    ResearchExperiment,
+)
 
 __all__ += [
     "AuditEvent",
@@ -158,6 +164,10 @@ __all__ += [
     "SatisfactionResponse",
     "UsageEvent",
     "User",
+    "EvaluationDataset",
+    "ExperimentRun",
+    "IncubatedFeature",
+    "ResearchExperiment",
     "ConnectedAccount",
     "SyncChange",
     "SyncConflict",
