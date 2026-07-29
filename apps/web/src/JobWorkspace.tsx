@@ -29,6 +29,27 @@ type SavedSearch = {
   filters: Record<string, unknown>;
 };
 
+type MatchComponent = {
+  score: number;
+  weight: number;
+  weighted_score: number;
+  confidence: number;
+  explanation: string;
+  matched: string[];
+  missing: string[];
+};
+
+type JobMatch = {
+  overall_score: number;
+  confidence: number;
+  recommendation: string;
+  components: Record<string, MatchComponent>;
+  strengths: string[];
+  gaps: string[];
+  hard_blocks: string[];
+  reasons: string[];
+};
+
 const API = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000";
 
 export function JobWorkspace() {
@@ -39,6 +60,7 @@ export function JobWorkspace() {
   const [workplace, setWorkplace] = useState("");
   const [favoriteOnly, setFavoriteOnly] = useState(false);
   const [message, setMessage] = useState("");
+  const [match, setMatch] = useState<JobMatch | null>(null);
 
   const search = useCallback(async () => {
     const response = await fetch(`${API}/jobs/search`, {
@@ -81,15 +103,16 @@ export function JobWorkspace() {
   }
 
   async function analyze(job: Job) {
-    setMessage("Analyzing this role with your verified profile…");
-    const response = await fetch(`${API}/jobs/${job.id}/analyze`, {
+    setMessage("Calculating an evidence-backed match…");
+    const response = await fetch(`${API}/jobs/${job.id}/match`, {
       method: "POST",
     });
     const body = await response.json();
-    setMessage(response.ok ? "Relevance analysis complete." : body.detail);
+    setMessage(
+      response.ok ? "Explainable match analysis complete." : body.detail,
+    );
     if (response.ok) {
-      setSelected(body);
-      await search();
+      setMatch(body);
     }
   }
 
@@ -168,7 +191,10 @@ export function JobWorkspace() {
               type="button"
               className={`job-card ${selected?.id === job.id ? "selected" : ""}`}
               key={job.id}
-              onClick={() => setSelected(job)}
+              onClick={() => {
+                setSelected(job);
+                setMatch(null);
+              }}
             >
               <div>
                 <span className="source-pill">{job.source_provider}</span>
@@ -202,34 +228,13 @@ export function JobWorkspace() {
                   className="button"
                   onClick={() => void analyze(selected)}
                 >
-                  Analyze relevance
+                  Calculate match
                 </button>
               </div>
               <p className="eyebrow">{selected.company_name}</p>
               <h2>{selected.title}</h2>
               <p>{selected.location_raw ?? "Location not listed"}</p>
-              {selected.relevance_analysis && (
-                <div className="relevance">
-                  <strong>
-                    {Math.round(selected.relevance_score ?? 0)}% relevance
-                  </strong>
-                  <p>{selected.relevance_analysis.reason}</p>
-                  <div>
-                    {(selected.relevance_analysis.strengths ?? []).map(
-                      (item) => (
-                        <span className="strength" key={item}>
-                          + {item}
-                        </span>
-                      ),
-                    )}
-                    {(selected.relevance_analysis.gaps ?? []).map((item) => (
-                      <span className="gap" key={item}>
-                        − {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {match && <MatchAnalysis match={match} />}
               <p className="job-description">{selected.description}</p>
               <a className="button apply-link" href={selected.canonical_url}>
                 View original job
@@ -259,6 +264,76 @@ export function JobWorkspace() {
           </button>
         ))}
       </section>
+    </section>
+  );
+}
+
+function MatchAnalysis({ match }: { match: JobMatch }) {
+  return (
+    <section className="match-analysis" aria-label="Match analysis">
+      <div className="match-summary">
+        <strong>{Math.round(match.overall_score)}%</strong>
+        <div>
+          <span
+            className={`recommendation recommendation-${match.recommendation}`}
+          >
+            {match.recommendation.replace("_", " ")}
+          </span>
+          <p>{Math.round(match.confidence * 100)}% analysis confidence</p>
+        </div>
+      </div>
+      {match.hard_blocks.length > 0 && (
+        <div className="match-blockers">
+          <strong>Eligibility blockers</strong>
+          {match.hard_blocks.map((item) => (
+            <p key={item}>{item}</p>
+          ))}
+        </div>
+      )}
+      <div className="score-breakdown">
+        {Object.entries(match.components).map(([name, component]) => (
+          <article key={name}>
+            <div>
+              <strong>{name.replaceAll("_", " ")}</strong>
+              <span>{Math.round(component.score)}%</span>
+            </div>
+            <progress value={component.score} max="100" />
+            <p>{component.explanation}</p>
+          </article>
+        ))}
+      </div>
+      <div className="match-insights">
+        <div>
+          <strong>Strengths</strong>
+          {match.strengths.length ? (
+            match.strengths.map((item) => (
+              <span className="strength" key={item}>
+                + {item}
+              </span>
+            ))
+          ) : (
+            <p>No verified strengths detected yet.</p>
+          )}
+        </div>
+        <div>
+          <strong>Gap analysis</strong>
+          {match.gaps.length ? (
+            match.gaps.map((item) => (
+              <span className="gap" key={item}>
+                − {item}
+              </span>
+            ))
+          ) : (
+            <p>No explicit skill gaps detected.</p>
+          )}
+        </div>
+      </div>
+      <div className="recommendation-insights">
+        <strong>Recommendation insights</strong>
+        {match.reasons.map((reason) => (
+          <p key={reason}>{reason}</p>
+        ))}
+      </div>
     </section>
   );
 }

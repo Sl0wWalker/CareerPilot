@@ -1,5 +1,13 @@
 from careerpilot.models.ai import AISettings, AISuggestion, ProfileEmbedding
-from careerpilot.models.jobs import Company, Job, JobSource, SavedSearch, ScheduledSearch
+from careerpilot.models.jobs import (
+    Company,
+    Job,
+    JobMatch,
+    JobSource,
+    MatchingSettings,
+    SavedSearch,
+    ScheduledSearch,
+)
 from careerpilot.models.profile import (
     Achievement,
     CareerProfile,
@@ -23,7 +31,9 @@ __all__ = [
     "Experience",
     "JobPreference",
     "Job",
+    "JobMatch",
     "JobSource",
+    "MatchingSettings",
     "Project",
     "ProfileEmbedding",
     "ParsedFact",

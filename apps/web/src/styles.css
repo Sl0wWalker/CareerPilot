@@ -614,9 +614,92 @@ input[type="file"] {
   background: transparent;
 }
 
+.match-analysis {
+  display: grid;
+  gap: 1rem;
+  margin: 1.2rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(75, 197, 168, 0.25);
+  border-radius: 18px;
+  background: rgba(13, 34, 37, 0.72);
+}
+
+.match-insights > div {
+  flex: 1;
+}
+
+.match-summary,
+.score-breakdown article > div,
+.match-insights {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.match-summary > strong {
+  font-size: 2.6rem;
+  color: var(--accent);
+}
+
+.recommendation {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  text-transform: capitalize;
+  background: rgba(75, 197, 168, 0.16);
+}
+
+.recommendation-blocked,
+.match-blockers {
+  color: #ffb5ac;
+  background: rgba(184, 62, 50, 0.16);
+}
+
+.match-blockers,
+.recommendation-insights {
+  padding: 0.8rem;
+  border-radius: 12px;
+}
+
+.score-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.score-breakdown article {
+  padding: 0.7rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.score-breakdown strong {
+  text-transform: capitalize;
+}
+
+.score-breakdown progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.score-breakdown p,
+.match-summary p,
+.match-insights p,
+.recommendation-insights p {
+  color: var(--muted);
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+}
+
 @media (max-width: 800px) {
   .job-toolbar,
   .job-layout {
     grid-template-columns: 1fr;
+  }
+
+  .score-breakdown,
+  .match-insights {
+    grid-template-columns: 1fr;
+    display: grid;
   }
 }

@@ -31,6 +31,8 @@ def test_migrations_upgrade_and_downgrade(
         "jobs",
         "saved_searches",
         "scheduled_searches",
+        "matching_settings",
+        "job_matches",
     } <= tables
 
     command.downgrade(config, "base")

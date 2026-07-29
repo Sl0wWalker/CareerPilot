@@ -96,3 +96,33 @@ class ScheduledSearch(EntityMixin, Base):
     next_run_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     last_run_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
+
+class MatchingSettings(EntityMixin, Base):
+    __tablename__ = "matching_settings"
+
+    weights: Mapped[dict[str, float]] = mapped_column(JSON, default=dict)
+    hard_block_threshold: Mapped[float] = mapped_column(Float, default=0.35)
+    minimum_recommendation_score: Mapped[float] = mapped_column(Float, default=65.0)
+
+
+class JobMatch(EntityMixin, Base):
+    __tablename__ = "job_matches"
+    __table_args__ = (UniqueConstraint("job_id", "profile_id"),)
+
+    job_id: Mapped[UUID] = mapped_column(
+        Uuid(native_uuid=False), ForeignKey("jobs.id", ondelete="CASCADE"), index=True
+    )
+    profile_id: Mapped[UUID] = mapped_column(
+        Uuid(native_uuid=False), ForeignKey("career_profiles.id", ondelete="CASCADE"), index=True
+    )
+    overall_score: Mapped[float] = mapped_column(Float)
+    confidence: Mapped[float] = mapped_column(Float)
+    recommendation: Mapped[str] = mapped_column(String(32), index=True)
+    engine_version: Mapped[str] = mapped_column(String(32))
+    components: Mapped[dict[str, Any]] = mapped_column(JSON)
+    strengths: Mapped[list[str]] = mapped_column(JSON)
+    gaps: Mapped[list[str]] = mapped_column(JSON)
+    hard_blocks: Mapped[list[str]] = mapped_column(JSON)
+    reasons: Mapped[list[str]] = mapped_column(JSON)
+    evidence: Mapped[list[dict[str, Any]]] = mapped_column(JSON)
+    job: Mapped[Job] = relationship()
