@@ -1,0 +1,36 @@
+name: Bug report
+description: Report a reproducible CareerPilot defect using synthetic data.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach real resumes, credentials, tokens, cookies, or applicant data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide minimal steps using synthetic data.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CareerPilot version
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [Profile, Resume, Jobs, Matching, Documents, Automation, Plugins, API, UI, Other]
+    validations:
+      required: true
+

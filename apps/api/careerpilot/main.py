@@ -16,6 +16,7 @@ from careerpilot.api.global_platform import router as global_router
 from careerpilot.api.health import router as health_router
 from careerpilot.api.intelligence import router as intelligence_router
 from careerpilot.api.jobs import router as jobs_router
+from careerpilot.api.maintenance import router as maintenance_router
 from careerpilot.api.marketplace import router as marketplace_router
 from careerpilot.api.matching import router as matching_router
 from careerpilot.api.platform import router as platform_router
@@ -78,6 +79,7 @@ app.include_router(coach_router)
 app.include_router(platform_router)
 app.include_router(enterprise_router)
 app.include_router(marketplace_router)
+app.include_router(maintenance_router)
 app.include_router(intelligence_router)
 app.include_router(global_router)
 app.include_router(research_router)

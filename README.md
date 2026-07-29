@@ -141,3 +141,17 @@ automation adapters. Open the **Developer** workspace in the application or brow
 the local API documentation at `http://127.0.0.1:8000/docs`.
 
 Official client libraries and runnable examples are under `sdk/` and `samples/`.
+## Community and maintenance
+
+CareerPilot is governed as a privacy-first open-source project. Start with
+[CONTRIBUTING.md](CONTRIBUTING.md), review the [governance](docs/GOVERNANCE.md),
+[security policy](SECURITY.md), and [roadmap](docs/ROADMAP.md), then run the complete local quality
+gate:
+
+```powershell
+.\scripts\quality.ps1
+```
+
+Create architecture records with `.\scripts\new-adr.ps1` and sample plugin packages with
+`.\scripts\new-plugin.ps1`. Public API and plugin changes must follow the documented compatibility
+and deprecation policies.

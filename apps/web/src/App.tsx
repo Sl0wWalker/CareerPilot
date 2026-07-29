@@ -16,6 +16,7 @@ import { GlobalWorkspace } from "./GlobalWorkspace";
 import { IntelligenceWorkspace } from "./IntelligenceWorkspace";
 import { t } from "./i18n";
 import { JobWorkspace } from "./JobWorkspace";
+import { MaintenanceWorkspace } from "./MaintenanceWorkspace";
 import { MarketplaceWorkspace } from "./MarketplaceWorkspace";
 import { ReleaseWorkspace } from "./ReleaseWorkspace";
 import { ResearchWorkspace } from "./ResearchWorkspace";
@@ -63,6 +64,7 @@ export function App() {
     | "developer"
     | "enterprise"
     | "marketplace"
+    | "maintenance"
     | "intelligence"
     | "global"
     | "research"
@@ -182,6 +184,13 @@ export function App() {
         </div>
       </header>
       <nav className="view-tabs" aria-label={t("workspace")}>
+        <button
+          type="button"
+          className={view === "maintenance" ? "active" : ""}
+          onClick={() => setView("maintenance")}
+        >
+          Maintenance
+        </button>
         <button
           type="button"
           className={view === "research" ? "active" : ""}
@@ -304,6 +313,8 @@ export function App() {
             setView("resume");
           }}
         />
+      ) : view === "maintenance" ? (
+        <MaintenanceWorkspace />
       ) : view === "global" ? (
         <GlobalWorkspace />
       ) : view === "research" ? (

@@ -1,0 +1,29 @@
+name: Feature request
+description: Propose a focused improvement aligned with CareerPilot's mission.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: user_problem
+    attributes:
+      label: User problem
+      description: What job-search problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe success without prescribing implementation.
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Product principles
+      options:
+        - label: This can preserve a free local workflow.
+          required: true
+        - label: This preserves truthful data and human approval.
+          required: true
+

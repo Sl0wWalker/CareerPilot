@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Added
+
+- Long-term governance, contribution, security, compatibility, release, and plugin policies.
+- Automated dependency review, weekly maintenance audits, and tagged release artifacts.
+- Contributor scaffolding for ADRs and plugin samples.
+- Unified local quality gate and maintenance status API.
+
+## Unreleased
+
 - Add cursor-based offline-first synchronization with explicit conflict resolution.
 - Add optional Gmail, Google Calendar, Google Drive, OneDrive, Dropbox, and LinkedIn connections.
 - Add least-privilege shared workspaces and third-party webhook foundations.
