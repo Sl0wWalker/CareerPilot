@@ -34,6 +34,7 @@ class OperationsMiddleware(BaseHTTPMiddleware):
             "/metrics",
             "/api/v1/auth/login",
             "/api/v1/auth/register",
+            "/api/v1/platform/public/status",
         }
         if self.settings.auth_enabled and request.url.path not in public_paths:
             authorization = request.headers.get("authorization", "")

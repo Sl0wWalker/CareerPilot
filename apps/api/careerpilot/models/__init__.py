@@ -29,6 +29,12 @@ from careerpilot.models.jobs import (
     SavedSearch,
     ScheduledSearch,
 )
+from careerpilot.models.platform import (
+    ApiKey,
+    PluginInstallation,
+    WebhookDelivery,
+    WebhookSubscription,
+)
 from careerpilot.models.profile import (
     Achievement,
     CareerProfile,
@@ -129,4 +135,10 @@ __all__ += [
     "MockInterviewResponse",
     "MockInterviewSession",
     "OfferComparison",
+]
+__all__ += [
+    "ApiKey",
+    "PluginInstallation",
+    "WebhookDelivery",
+    "WebhookSubscription",
 ]

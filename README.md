@@ -133,3 +133,11 @@ normalized, deduplicated, searchable, filterable, and can be saved or analyzed f
 AI-assisted relevance using the existing local provider configuration.
 
 Source syncs are explicit. Saved schedule definitions do not run in the background yet.
+## Developer platform
+
+CareerPilot includes a versioned REST API, live WebSocket events, revocable API
+keys, webhooks, and plugin extension points for AI providers, job sources, and
+automation adapters. Open the **Developer** workspace in the application or browse
+the local API documentation at `http://127.0.0.1:8000/docs`.
+
+Official client libraries and runnable examples are under `sdk/` and `samples/`.
