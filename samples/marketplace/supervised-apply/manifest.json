@@ -1,0 +1,1 @@
+{"slug":"supervised-apply","name":"Supervised Apply","version":"1.0.0","package_type":"workflow","channel":"stable","entrypoint":"workflow.json","permissions":["profile.read","jobs.read","documents.write","applications.read"],"dependencies":[]}

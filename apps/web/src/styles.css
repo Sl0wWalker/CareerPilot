@@ -1216,6 +1216,80 @@ input[type="file"] {
   display: grid;
   gap: 1.25rem;
 }
+.marketplace-workspace {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 2rem;
+}
+.marketplace-workspace h1 {
+  max-width: 900px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+.marketplace-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.package-card {
+  display: grid;
+  gap: 0.8rem;
+  align-content: start;
+}
+.package-card .button {
+  justify-self: start;
+}
+.studio-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr 260px;
+  gap: 1rem;
+}
+.node-palette {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+}
+.node-palette button {
+  padding: 0.75rem;
+  border: 1px solid #31433b;
+  border-radius: 0.7rem;
+  color: #dbe5df;
+  background: #0d1914;
+  text-align: left;
+}
+.workflow-canvas {
+  display: grid;
+  min-height: 480px;
+  place-items: center;
+  align-content: center;
+  background-image: radial-gradient(#2d4339 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.workflow-node {
+  width: min(320px, 90%);
+  padding: 1rem;
+  border: 1px solid #43e39f;
+  border-radius: 0.8rem;
+  background: #0d1914;
+}
+.ai-node {
+  border-color: #7fb9ff;
+}
+.approval-node {
+  border-color: #f6d57d;
+}
+.package-policy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+@media (max-width: 900px) {
+  .marketplace-grid,
+  .studio-grid,
+  .package-policy {
+    grid-template-columns: 1fr;
+  }
+}
 
 .coach-metrics {
   display: grid;

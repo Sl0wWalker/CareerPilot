@@ -14,6 +14,7 @@ import { DocumentWorkspace } from "./DocumentWorkspace";
 import { EnterpriseWorkspace } from "./EnterpriseWorkspace";
 import { t } from "./i18n";
 import { JobWorkspace } from "./JobWorkspace";
+import { MarketplaceWorkspace } from "./MarketplaceWorkspace";
 import { ReleaseWorkspace } from "./ReleaseWorkspace";
 import { SyncWorkspace } from "./SyncWorkspace";
 import { TrackingWorkspace } from "./TrackingWorkspace";
@@ -58,6 +59,7 @@ export function App() {
     | "coach"
     | "developer"
     | "enterprise"
+    | "marketplace"
   >("start");
   const [showOnboarding, setShowOnboarding] = useState(
     () => localStorage.getItem("careerpilot.onboarding.complete") !== "true",
@@ -176,6 +178,13 @@ export function App() {
       <nav className="view-tabs" aria-label={t("workspace")}>
         <button
           type="button"
+          className={view === "marketplace" ? "active" : ""}
+          onClick={() => setView("marketplace")}
+        >
+          Marketplace
+        </button>
+        <button
+          type="button"
           className={view === "enterprise" ? "active" : ""}
           onClick={() => setView("enterprise")}
         >
@@ -276,6 +285,8 @@ export function App() {
         <DeveloperWorkspace />
       ) : view === "enterprise" ? (
         <EnterpriseWorkspace />
+      ) : view === "marketplace" ? (
+        <MarketplaceWorkspace />
       ) : view === "coach" ? (
         <CoachWorkspace />
       ) : view === "sync" ? (

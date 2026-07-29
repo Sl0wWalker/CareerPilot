@@ -1,0 +1,1 @@
+{"slug":"ats-resume-pack","name":"ATS Resume Pack","version":"1.0.0","package_type":"resume_template","channel":"stable","entrypoint":"templates/index.json","permissions":["documents.read","documents.write"],"dependencies":[]}

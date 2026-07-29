@@ -45,6 +45,13 @@ from careerpilot.models.jobs import (
     SavedSearch,
     ScheduledSearch,
 )
+from careerpilot.models.marketplace import (
+    MarketplacePackage,
+    PackageInstallation,
+    PackageReview,
+    WorkflowDefinition,
+    WorkflowExecution,
+)
 from careerpilot.models.platform import (
     ApiKey,
     PluginInstallation,
@@ -151,6 +158,13 @@ __all__ += [
     "MockInterviewResponse",
     "MockInterviewSession",
     "OfferComparison",
+]
+__all__ += [
+    "MarketplacePackage",
+    "PackageInstallation",
+    "PackageReview",
+    "WorkflowDefinition",
+    "WorkflowExecution",
 ]
 __all__ += [
     "ApiKey",

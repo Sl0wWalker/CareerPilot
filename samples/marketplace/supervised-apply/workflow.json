@@ -1,0 +1,1 @@
+{"nodes":[{"id":"tailor","type":"ai","config":{"prompt":"Tailor from verified facts"}},{"id":"review","type":"approval","config":{"message":"Review every claim"}},{"id":"prepare","type":"action","config":{"action":"application.prepare"}}],"edges":[{"source":"tailor","target":"review"},{"source":"review","target":"prepare"}]}
