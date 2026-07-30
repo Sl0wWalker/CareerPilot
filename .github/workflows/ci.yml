@@ -15,6 +15,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -e "./apps/api[dev]"
+      - run: python -m playwright install --with-deps chromium
       - run: ruff check apps/api
       - run: pytest apps/api --cov=careerpilot --cov-report=term-missing
       - run: alembic -c apps/api/alembic.ini upgrade head
