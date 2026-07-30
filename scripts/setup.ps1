@@ -20,7 +20,6 @@ function Invoke-Checked {
     param(
         [Parameter(Mandatory = $true)]
         [string]$FilePath,
-        [Parameter(ValueFromRemainingArguments = $true)]
         [string[]]$CommandArguments
     )
 
@@ -48,12 +47,16 @@ if (-not (Test-Path $venvPython)) {
     if (-not (Test-Path $python312)) {
         throw "Python 3.12 was not found. Install it before running setup."
     }
-    Invoke-Checked $python312 -3.12 -m venv $venvRoot
+    Invoke-Checked -FilePath $python312 -CommandArguments @("-3.12", "-m", "venv", $venvRoot)
 }
-Invoke-Checked $venvPython -m ensurepip --upgrade
-Invoke-Checked $venvPython -m pip install --upgrade pip
-Invoke-Checked $venvPython -m pip install -e "$apiRoot[dev]"
-Invoke-Checked $venvPython -m playwright install chromium
+Invoke-Checked -FilePath $venvPython -CommandArguments @("-m", "ensurepip", "--upgrade")
+Invoke-Checked -FilePath $venvPython -CommandArguments @("-m", "pip", "install", "--upgrade", "pip")
+Invoke-Checked -FilePath $venvPython -CommandArguments @(
+    "-m", "pip", "install", "-e", "$apiRoot[dev]"
+)
+Invoke-Checked -FilePath $venvPython -CommandArguments @(
+    "-m", "playwright", "install", "chromium"
+)
 
 Write-Host "Installing dashboard dependencies..."
 Push-Location $webRoot
