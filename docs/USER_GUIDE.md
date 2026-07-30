@@ -2,7 +2,7 @@
 
 ## Start the application
 
-Run `.\scripts\dev.ps1`, then open `http://localhost:5173`.
+Run `.\scripts\dev.ps1`, then open `http://localhost:4725`.
 
 The first-run guide explains the safe workflow. It can be reopened from **Start &
 help**.

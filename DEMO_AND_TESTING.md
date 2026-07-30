@@ -54,7 +54,7 @@ Use an empty development database. Then run:
 powershell -ExecutionPolicy Bypass -File .\scripts\demo.ps1
 ```
 
-Open `http://localhost:5173`. The API is at `http://127.0.0.1:8000`; interactive API
+Open `http://localhost:4725`. The API is at `http://127.0.0.1:8000`; interactive API
 documentation is at `http://127.0.0.1:8000/docs`.
 
 The seed script refuses to run when any non-demo profile exists. It creates only:
@@ -91,7 +91,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\dev.ps1
 
 Development ports:
 
-- Dashboard: `http://localhost:5173`
+- Dashboard: `http://localhost:4725`
 - API: `http://127.0.0.1:8000`
 - Health: `http://127.0.0.1:8000/health`
 - Readiness: `http://127.0.0.1:8000/ready`
@@ -158,7 +158,7 @@ Do not run the move command if `data\careerpilot.db` contains information you st
 - **`python` is not found:** verify `py --version` reports Python 3.12, then rerun setup.
 - **Broken copied virtual environment:** remove only `apps\api\.venv` and rerun setup.
 - **npm cannot run:** verify `node --version` and `npm.cmd --version`; reopen PowerShell.
-- **Port 5173 or 8000 is busy:** stop the previous CareerPilot processes before restarting.
+- **Port 4725 or 8000 is busy:** stop the previous CareerPilot processes before restarting.
 - **Database tables missing:** run the Alembic upgrade command shown above.
 - **Ollama offline:** run `ollama --version`, `ollama list`, and verify
   `http://localhost:11434/api/tags`. Deterministic features still work without Ollama.

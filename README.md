@@ -36,7 +36,7 @@ Copy-Item .env.example .env
 
 Open:
 
-- Dashboard: http://localhost:5173
+- Dashboard: http://localhost:4725
 - API health: http://127.0.0.1:8000/health
 - API readiness: http://127.0.0.1:8000/ready
 - API documentation: http://127.0.0.1:8000/docs

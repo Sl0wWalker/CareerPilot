@@ -21,5 +21,5 @@ Start-Process powershell -WindowStyle Hidden -ArgumentList @(
 )
 
 Write-Host "CareerPilot is starting:"
-Write-Host "Dashboard: http://localhost:5173"
+Write-Host "Dashboard: http://localhost:4725"
 Write-Host "API docs:  http://127.0.0.1:8000/docs"

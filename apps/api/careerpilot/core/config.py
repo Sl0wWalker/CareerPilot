@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     environment: str = "development"
     log_level: str = "INFO"
     database_url: str = "sqlite:///./data/careerpilot.db"
-    cors_origins: list[str] = ["http://localhost:5173"]
+    cors_origins: list[str] = ["http://localhost:4725"]
     ai_provider: str = "ollama"
     ai_model: str = "qwen3:8b"
     ai_embedding_model: str = "nomic-embed-text"
@@ -61,4 +61,3 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
-
