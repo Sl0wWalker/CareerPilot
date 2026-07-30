@@ -1,0 +1,22 @@
+Jordan Taylor
+Austin, Texas
+jordan.taylor@example.test
+
+SUMMARY
+Verification engineer focused on reliable semiconductor design automation.
+
+EXPERIENCE
+Senior Verification Engineer, Example Semiconductor
+January 2021 - Present
+- Built Python and Tcl automation for formal verification workflows.
+- Improved repeatability of logic-equivalence checks across design teams.
+
+EDUCATION
+Bachelor of Engineering, Example University, 2020
+
+SKILLS
+Python, Tcl, SystemVerilog, Formal Verification, Logic Equivalence Checking
+
+PROJECTS
+Verification Flow Dashboard
+- Created a local dashboard for monitoring verification runs and results.

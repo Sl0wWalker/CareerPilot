@@ -23,6 +23,7 @@ if (-not (Test-Path (Join-Path $apiRoot ".venv"))) {
 }
 & (Join-Path $apiRoot ".venv\Scripts\python.exe") -m pip install --upgrade pip
 & (Join-Path $apiRoot ".venv\Scripts\python.exe") -m pip install -e "$apiRoot[dev]"
+& (Join-Path $apiRoot ".venv\Scripts\python.exe") -m playwright install chromium
 
 Write-Host "Installing dashboard dependencies..."
 Push-Location $webRoot

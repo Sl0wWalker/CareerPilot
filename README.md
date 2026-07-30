@@ -43,6 +43,13 @@ Open:
 - Diagnostics: http://127.0.0.1:8000/diagnostics
 - Metrics: http://127.0.0.1:8000/metrics
 
+For a fictional, submission-safe walkthrough, see
+[`DEMO_AND_TESTING.md`](DEMO_AND_TESTING.md) or run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\demo.ps1
+```
+
 ## Run checks
 
 ```powershell
