@@ -13,17 +13,47 @@ if (-not $npm) {
     $npm = "$env:ProgramFiles\nodejs\npm.cmd"
 }
 $env:Path = "$(Split-Path -Parent $npm);$env:Path"
+$venvRoot = Join-Path $apiRoot ".venv"
+$venvPython = Join-Path $venvRoot "Scripts\python.exe"
+
+function Invoke-Checked {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$FilePath,
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$CommandArguments
+    )
+
+    & $FilePath @CommandArguments
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command failed ($LASTEXITCODE): $FilePath $($CommandArguments -join ' ')"
+    }
+}
 
 Write-Host "Creating the Python environment..."
-if (-not (Test-Path (Join-Path $apiRoot ".venv"))) {
+if (Test-Path $venvPython) {
+    & $venvPython -c "import pip._internal.cli"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "The existing Python environment is incomplete. Rebuilding it..."
+        $resolvedVenv = (Resolve-Path $venvRoot).Path
+        $expectedVenv = Join-Path (Resolve-Path $apiRoot).Path ".venv"
+        if ($resolvedVenv -ne $expectedVenv) {
+            throw "Refusing to remove an unexpected environment path: $resolvedVenv"
+        }
+        Remove-Item -LiteralPath $resolvedVenv -Recurse -Force
+    }
+}
+
+if (-not (Test-Path $venvPython)) {
     if (-not (Test-Path $python312)) {
         throw "Python 3.12 was not found. Install it before running setup."
     }
-    & $python312 -m venv (Join-Path $apiRoot ".venv")
+    Invoke-Checked $python312 -3.12 -m venv $venvRoot
 }
-& (Join-Path $apiRoot ".venv\Scripts\python.exe") -m pip install --upgrade pip
-& (Join-Path $apiRoot ".venv\Scripts\python.exe") -m pip install -e "$apiRoot[dev]"
-& (Join-Path $apiRoot ".venv\Scripts\python.exe") -m playwright install chromium
+Invoke-Checked $venvPython -m ensurepip --upgrade
+Invoke-Checked $venvPython -m pip install --upgrade pip
+Invoke-Checked $venvPython -m pip install -e "$apiRoot[dev]"
+Invoke-Checked $venvPython -m playwright install chromium
 
 Write-Host "Installing dashboard dependencies..."
 Push-Location $webRoot
