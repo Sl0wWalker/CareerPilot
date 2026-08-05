@@ -18,14 +18,14 @@ dependencies = [
   "pydantic-settings>=2.6,<3",
   "playwright>=1.51,<2",
   "sqlalchemy>=2.0,<3",
-  "structlog>=24.4,<26",
+  "structlog>=24.4,<27",
   "uvicorn[standard]>=0.32,<1",
 ]
 
 [project.optional-dependencies]
 dev = [
   "pytest>=9.0.3,<10",
-  "pytest-cov>=6,<7",
+  "pytest-cov>=6,<8",
   "ruff>=0.8,<1",
 ]
 
